@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./login.css";
+import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -11,10 +11,55 @@ const Login = () => {
   const [name, setName] = useState("");
   const [apellido, setApellido] = useState("");
   const [error, setError] = useState("");
+  const [specialCharError, setSpecialCharError] = useState("");
 
   const navigate = useNavigate();
 
-  // Este useEffect verifica si ya hay un token en el localStorage
+  //Aca verificamos que no se puedan usar caracteres especiales con este parametro//
+  const validateInput = (input: string): boolean => {
+    const regex = /^[a-zA-Z0-9@.]*$/; // Permite solo letras, números, @ y .
+    return regex.test(input);
+  };
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (validateInput(value)) {
+      setEmail(value);
+      setSpecialCharError("");
+    } else {
+      setSpecialCharError("No se permiten caracteres especiales, intente de nuevo.");
+    }
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (validateInput(value)) {
+      setPassword(value);
+      setSpecialCharError("");
+    } else {
+      setSpecialCharError("No se permiten caracteres especiales, intente de nuevo.");
+    }
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (validateInput(value)) {
+      setName(value);
+      setSpecialCharError("");
+    } else {
+      setSpecialCharError("No se permiten caracteres especiales, intente de nuevo.");
+    }
+  };
+
+  const handleApellidoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (validateInput(value)) {
+      setApellido(value);
+      setSpecialCharError("");
+    } else {
+      setSpecialCharError("No se permiten caracteres especiales, intente de nuevo.");
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
@@ -29,10 +74,10 @@ const Login = () => {
     }
   }, [navigate]);
 
-
   const toggleView = () => {
     setIsLogin(!isLogin);
     setError("");
+    setSpecialCharError("");
   };
 
   const handleLogin = async () => {
@@ -42,29 +87,23 @@ const Login = () => {
         password: password,
       });
 
-      // Guardar el token en localStorage
       localStorage.setItem("access_token", response.data.access_token);
 
-      // Decodificar el token para verificar el rol
       const decodedToken: any = jwtDecode(response.data.access_token);
       const isAdmin = decodedToken.role === 1;
 
-      // Redirigir al dashboard si es admin, o a perfil si no lo es
       if (isAdmin) {
         navigate("/dashboard");
       } else {
         navigate("/perfil");
       }
 
-      // Forzar la actualización del estado en el Header
       window.dispatchEvent(new Event("storage"));
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       setError("Correo o contraseña incorrectos");
     }
   };
-
-
 
   const handleRegister = async () => {
     const userData = {
@@ -76,7 +115,7 @@ const Login = () => {
 
     try {
       await axios.post('http://localhost:3000/auth', userData);
-      navigate('/login'); // O donde desees redirigir
+      navigate('/login');
     } catch (error) {
       console.error('Error al registrar:', error.response ? error.response.data : error.message);
     }
@@ -88,25 +127,25 @@ const Login = () => {
         {isLogin ? (
           <div className="login-section">
             <div className="form">
-                <div className="titulo">Iniciar Sesión</div>
-
+              <div className="titulo">Iniciar Sesión</div>
               <input
                 type="email"
                 placeholder="Correo electrónico"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
               />
               <input
                 type="password"
                 placeholder="Contraseña"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
               />
+              {specialCharError && <p className="error">{specialCharError}</p>}
               <button className="btn-login" onClick={handleLogin}>INICIAR SESIÓN</button>
               {error && <p className="error">{error}</p>}
             </div>
             <div className="welcome">
-            <div className="titulo">¡Bienvenido!</div>
+              <div className="titulo">¡Bienvenido!</div>
               <p>Ingresa tu usuario y contraseña para poder iniciar sesión</p>
               <button onClick={toggleView} className="btn-secondary">
                 REGÍSTRATE
@@ -116,39 +155,39 @@ const Login = () => {
         ) : (
           <div className="register-section">
             <div className="welcome">
-            <div className="titulo">¡Regístrate!</div>
-        
+              <div className="titulo">¡Regístrate!</div>
               <p>Cree una cuenta utilizando un correo electrónico y una contraseña</p>
               <button onClick={toggleView} className="btn-secondary">
                 INICIA SESIÓN
               </button>
             </div>
             <div className="form">
-            <div className="titulo">Crear cuenta</div>
+              <div className="titulo">Crear cuenta</div>
               <input
                 type="text"
                 placeholder="Nombre"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleNameChange}
               />
               <input
                 type="text"
                 placeholder="Apellido"
                 value={apellido}
-                onChange={(e) => setApellido(e.target.value)}
+                onChange={handleApellidoChange}
               />
               <input
                 type="email"
                 placeholder="Correo electrónico"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
               />
               <input
                 type="password"
                 placeholder="Contraseña"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
               />
+              {specialCharError && <p className="error">{specialCharError}</p>}
               <button className="btn-register" onClick={handleRegister}>Registrate</button>
               {error && <p className="error">{error}</p>}
             </div>
