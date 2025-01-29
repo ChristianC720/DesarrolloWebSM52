@@ -1,0 +1,165 @@
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e0e0e0;
+  }
+  
+  .panel {
+    display: flex;
+    width: 800px;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px #96CFBE(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+  
+  .login-section,
+  .register-section {
+    display: flex;
+    flex: 1;
+  }
+  
+  .form {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #96CFBE;
+    border-radius: 5px;
+  }
+  .titulo{
+    color: #000000;
+    font-family:sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .form button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #96CFBE;
+  }
+  
+  .btn-login {
+    background-color: black;
+    color: white;
+  }
+  
+  .btn-register {
+    background-color: black;
+    color: white;
+  }
+  
+  .welcome {
+    flex: 1;
+    background-color: #ffd600;
+    color: black;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .welcome h2 {
+    margin-bottom: 15px;
+  }
+  
+  .welcome p {
+    margin-bottom: 20px;
+  }
+  
+  .btn-secondary {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .error {
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+
+.welcome {
+  flex: 1;
+  background-color: #C089E3;
+  color: black;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  animation: bounceIn 1s ease-out; /* Movimiento al entrar */
+}
+
+@keyframes bounceIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.welcome h2 {
+  margin-bottom: 15px;
+  animation: bounceText 1.5s infinite alternate; /* Rebote ligero en el texto */
+}
+
+@keyframes bounceText {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  opacity: 0;
+  animation: showError 0.5s forwards; /* Suavidad al aparecer un error */
+}
+
+@keyframes showError {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  
+  
