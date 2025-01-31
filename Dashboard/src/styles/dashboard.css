@@ -21,13 +21,6 @@ body {
     flex: 1;
 }
 
-.sidebar {
-    width: 200px;
-    background-color: #343a40;
-    color: white;
-    padding: 20px;
-}
-
 .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -65,9 +58,148 @@ body {
     background-color: rgb(20, 70, 139);
 }
 
-.sidebar{
-    background-color: rgb(20, 139, 115);
-}
 .main-content{
     background-color: rgb(139, 30, 20);
+}
+
+/* Main layout */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f3ebff;
+}
+
+.main-section {
+    flex: 1;
+    padding: 30px;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Search container */
+.search-container {
+    background-color: #e2d1f9;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    margin-right: 15px;
+    font-size: 14px;
+    max-width: 400px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.header-controls button span {
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Optional: if you want to add hover effect */
+.header-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+/* Project stats */
+.project-stats {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.stat-card {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 64px;
+    color: #888;
+    margin: 10px 0;
+}
+
+/* Sections grid */
+.sections-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.section-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 200px;
+}
+
+.section-card h2 {
+    color: #666;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Sidebar elements */
+.dropdown-button {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.team-member {
+    background: rgba(255,255,255,0.7);
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+}
+
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    margin: 30px auto;
+    position: relative;
+    /* Add proper circle progress styling */
 }

@@ -1,21 +1,27 @@
 import Header from './header';
+import ProjectStats from './projectStats';
 import Sidebar from './sidebar';
 
-function mainContent() {
-    
+function MainContent() {
     return (
-        <>
-        
-            <Header/>
-            <Sidebar/>
-            <main className="main-content">
-                <div className="progress-bar">
-                    <div className="progress" style={{ width: '57%' }}></div>
+        <div className="app-container">
+            <Sidebar />
+            <div className="main-section">
+                <Header/>
+                <ProjectStats />
+                <div className="sections-container">
+                    <div className="section-card">
+                        <h2>Equipos</h2>
+                        {/* Teams content */}
+                    </div>
+                    <div className="section-card">
+                        <h2>Recursos</h2>
+                        {/* Resources content */}
+                    </div>
                 </div>
-                <span>57%</span>
-            </main>
-            </>
+            </div>
+        </div>
     );
-};
+}
 
-export default mainContent;
+export default MainContent;

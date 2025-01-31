@@ -1,0 +1,164 @@
+.sidebar {
+    width: 280px;
+    background-color: #e2d1f9;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.menu-button {
+    width: 100%;
+    padding: 8px 15px;
+    background: white;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+/* Add styles for the list items */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.sidebar ul li {
+    padding: 8px 15px;
+    margin: 4px 0;
+    color: #000;
+    cursor: pointer;
+}
+
+.members-section {
+    margin-bottom: 15px;
+}
+
+.members-list {
+    margin: 8px 0;
+}
+
+.member-item {
+    padding: 4px;
+    margin: 4px 0;
+}
+
+.role {
+    font-size: 12px;
+    color: #888;
+    margin-left: 15px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.member-name {
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000;
+    margin-left: 15px;
+}
+
+.arrow {
+    font-size: 12px;
+}
+
+.progress-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    margin: 10px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 50%;
+    background: conic-gradient(#2196F3 57%, #eee 0);
+}
+
+.progress-circle::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #e2d1f9;
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative;
+    z-index: 1;
+}
+
+.progress-label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #000;
+}
+
+.icon {
+    font-size: 16px;
+}
+
+.status-section {
+    margin: 8px 0;
+}
+
+.status-list {
+    padding-left: 20px;
+    margin: 8px 0;
+    list-style: none;
+}
+
+.status-list li {
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.status-list li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+} 

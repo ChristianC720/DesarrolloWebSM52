@@ -1,11 +1,24 @@
 import React from 'react';
 
-const Header: React.FC = () => {
+
+function Header() {
     return (
-        <header className="header">
-            <h1>Search</h1>
-        </header>
+        <div className="search-container">
+            <input 
+                type="text" 
+                className="search-input" 
+                placeholder="Search" 
+            />
+            <div className="header-controls">
+                <button>
+                    <span>👤</span>
+                </button>
+                <button>
+                    <span>⚙️</span>
+                </button>
+            </div>
+        </div>
     );
-};
+}
 
 export default Header;
