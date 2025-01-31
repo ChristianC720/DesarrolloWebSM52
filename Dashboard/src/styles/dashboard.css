@@ -58,3 +58,16 @@ body {
     height: 20px;
     background-color: #4caf50;
 }
+
+
+
+.header{
+    background-color: rgb(20, 70, 139);
+}
+
+.sidebar{
+    background-color: rgb(20, 139, 115);
+}
+.main-content{
+    background-color: rgb(139, 30, 20);
+}
