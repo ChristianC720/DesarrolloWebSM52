@@ -522,3 +522,279 @@ body {
     background-color: #fff3e0;
     color: #fa8c16;
 }
+
+.period-btn.active {
+    background: #C089E3;
+    color: white;
+    border-color: #9b6cc3;
+}
+
+.analytics-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #C089E3;
+    margin: 0.5rem 0;
+}
+
+/* Optional: Update hover states */
+.period-btn:hover {
+    background-color: rgba(192, 137, 227, 0.1);
+}
+
+/* Optional: Update any other blue-colored elements */
+.stat-card:hover {
+    background-color: rgba(192, 137, 227, 0.1);
+}
+
+.activity-date {
+    color: #C089E3;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+
+.trend {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.trend.positive {
+    color: #2ecc71;
+}
+
+.trend.negative {
+    color: #e74c3c;
+}
+
+.trend.neutral {
+    color: #95a5a6;
+}
+
+.progress-metrics {
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #C089E3;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.status-card {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.status-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.status-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #C089E3;
+}
+
+.activity-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.activity-icon {
+    font-size: 1.25rem;
+}
+
+.activity-time {
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.priority-high {
+    border-left: 3px solid #e74c3c;
+    padding-left: 0.5rem;
+}
+
+.priority-medium {
+    border-left: 3px solid #f1c40f;
+    padding-left: 0.5rem;
+}
+
+.priority-low {
+    border-left: 3px solid #2ecc71;
+    padding-left: 0.5rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background: rgba(192, 137, 227, 0.1);
+}
+
+/* Developer Dashboard Specific Styles */
+.dev-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.dev-stat-card {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.dev-stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.dev-stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #C089E3;
+}
+
+.commits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.commit-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.commit-branch {
+    background: #f0f0f0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Designer Dashboard Specific Styles */
+.design-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.design-stat-card {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.design-stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.design-stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #C089E3;
+}
+
+.designs-list {
+    list-style: none;
+    padding: 0;
+}
+
+.design-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.design-type {
+    background: #C089E3;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.design-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.status-review {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.status-completed {
+    background: #e3fcef;
+    color: #00a854;
+}
+
+.status-iteration {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+/* Shared responsive styles */
+@media (max-width: 768px) {
+    .dev-stats-grid,
+    .design-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

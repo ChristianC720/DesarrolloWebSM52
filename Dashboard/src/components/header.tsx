@@ -13,9 +13,6 @@ function Header() {
                 <button>
                     <span>👤</span>
                 </button>
-                <button>
-                    <span>⚙️</span>
-                </button>
             </div>
         </div>
     );
