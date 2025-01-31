@@ -1,6 +1,6 @@
 .sidebar {
     width: 280px;
-    background-color: #e2d1f9;
+    background-color: #D7BBEC;
     padding: 20px;
     position: fixed;
     top: 0;
@@ -144,21 +144,49 @@
     font-size: 16px;
 }
 
-.status-section {
-    margin: 8px 0;
-}
-
-.status-list {
-    padding-left: 20px;
-    margin: 8px 0;
-    list-style: none;
-}
-
+/* Status styles - base styles */
 .status-list li {
-    padding: 8px 0;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 8px 0;
     cursor: pointer;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000;
 }
 
-.status-list li:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+/* Specific status colors */
+.status-list li:nth-child(1) {  /* Proyectos Activos */
+    background: #e3fcef;
+}
+
+.status-list li:nth-child(1):hover {
+    background: #d0f7e3;
+}
+
+.status-list li:nth-child(2) {  /* Proyectos en Pausa */
+    background: #fff3e0;
+}
+
+.status-list li:nth-child(2):hover {
+    background: #ffe9c7;
+}
+
+.status-list li:nth-child(3) {  /* Proyectos Inconclusos */
+    background: #ffe0e0;
+}
+
+.status-list li:nth-child(3):hover {
+    background: #ffd1d1;
+}
+
+/* Keep other status items (Equipos, Recursos) with original styling */
+.status-list li:nth-child(n+4) {
+    background: #fff0f0;
+}
+
+.status-list li:nth-child(n+4):hover {
+    background: #ffe6e6;
 } 

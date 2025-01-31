@@ -1,6 +1,8 @@
 import Header from './header';
 import ProjectStats from './projectStats';
+import ResourceSection from './resourceSection';
 import Sidebar from './sidebar';
+import TeamSection from './teamSection';
 
 function MainContent() {
     return (
@@ -12,11 +14,11 @@ function MainContent() {
                 <div className="sections-container">
                     <div className="section-card">
                         <h2>Equipos</h2>
-                        {/* Teams content */}
+                        <TeamSection />
                     </div>
                     <div className="section-card">
                         <h2>Recursos</h2>
-                        {/* Resources content */}
+                        <ResourceSection />
                     </div>
                 </div>
             </div>

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import '../styles/sidebar.css';
+import { useProjects } from '../context/ProjectContext';
 
 function Sidebar() {
     const [progress] = useState(57);
     const [showMembers, setShowMembers] = useState(false);
     const [showStatus, setShowStatus] = useState(false);
+    const { projectCounts } = useProjects();
 
     return (
         <aside className="sidebar">
@@ -65,15 +67,14 @@ function Sidebar() {
                         <span className="arrow">{showStatus ? '▼' : '▶'}</span>
                     </button>
 
-                    {showStatus && (
-                        <ul className="status-list">
-                            <li>Proyectos Activos</li>
-                            <li>Proyectos en Pausa</li>
-                            <li>Proyectos Inconclusos</li>
-                            <li>Equipos</li>
-                            <li>Recursos</li>
-                        </ul>
-                    )}
+                    
+                {showStatus && (
+                    <ul className="status-list">
+                        <li>Proyectos Activos ({projectCounts.active})</li>
+                        <li>Proyectos en Pausa ({projectCounts.paused})</li>
+                        <li>Proyectos Inconclusos ({projectCounts.unfinished})</li>
+                    </ul>
+                )}
                 </div>
             </div>
         </aside>
