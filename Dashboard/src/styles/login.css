@@ -1,165 +1,174 @@
-
 .login-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f3ebff;
-  }
-  
-  .panel {
+    padding: 20px;
+}
+
+.panel {
     display: flex;
     width: 800px;
-    height: 400px;
+    min-height: 400px;
+    max-height: 90vh;
     border-radius: 20px;
-    box-shadow: 0px 4px 10px #96CFBE(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     background-color: #ffffff;
-  }
-  
-  .login-section,
-  .register-section {
+}
+
+.login-section,
+.register-section {
     display: flex;
     flex: 1;
-  }
-  
-  .form {
+}
+
+.form {
     flex: 1;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-  
-  .form h2 {
+    gap: 15px;
+}
+
+.form h2 {
     margin-bottom: 20px;
-  }
-  
-  .form input {
-    margin-bottom: 15px;
-    padding: 10px;
+}
+
+.form input {
+    margin-bottom: 0;
+    padding: 12px;
     border: 1px solid #96CFBE;
     border-radius: 5px;
-  }
-  .titulo{
+}
+
+.titulo {
     color: #000000;
-    font-family:sans-serif;
-    font-size: 35px;
+    font-family: sans-serif;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
-  }
-  .form button {
+    margin-bottom: 15px;
+}
+
+.form button {
     padding: 10px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     background-color: #96CFBE;
-  }
-  
-  .btn-login {
-    background-color: black;
+}
+
+.btn-login,
+.btn-register,
+.btn-secondary {
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #96CFBE;
     color: white;
-  }
-  
-  .btn-register {
-    background-color: black;
-    color: white;
-  }
-  
-  .welcome {
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.welcome {
     flex: 1;
-    background-color: #ffd600;
+    background-color: #C089E3;
     color: black;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-  }
-  
-  .welcome h2 {
-    margin-bottom: 15px;
-  }
-  
-  .welcome p {
-    margin-bottom: 20px;
-  }
-  
-  .btn-secondary {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .error {
-    color: black;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-  
-
-.welcome {
-  flex: 1;
-  background-color: #C089E3;
-  color: black;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  animation: bounceIn 1s ease-out; /* Movimiento al entrar */
-}
-
-@keyframes bounceIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+    animation: bounceIn 1s ease-out;
 }
 
 .welcome h2 {
-  margin-bottom: 15px;
-  animation: bounceText 1.5s infinite alternate; /* Rebote ligero en el texto */
+    margin-bottom: 15px;
+    animation: bounceText 1.5s infinite alternate;
 }
 
-@keyframes bounceText {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-10px);
-  }
+.welcome p {
+    margin-bottom: 20px;
 }
 
 .error {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-  opacity: 0;
-  animation: showError 0.5s forwards; /* Suavidad al aparecer un error */
+    color: red;
+    margin-top: 10px;
+    text-align: center;
 }
 
-@keyframes showError {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes bounceIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
+@keyframes bounceText {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+.qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.qr-section p {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #333;
+}
+
+.qr-section canvas {
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .panel {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .login-section,
+    .register-section {
+        flex-direction: column-reverse;
+    }
+
+    .welcome {
+        padding: 20px;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    .titulo {
+        font-size: 24px;
+    }
+}
   
   

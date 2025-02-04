@@ -1,0 +1,46 @@
+------------------------------------------------------------------
+=========== COMO CREAR UN NUEVO PROYECTO EN FLASK PURO ===========
+------------------------------------------------------------------
+
+====== BEGINNING OF SCRIPT ======
+
+mkdir helloWorld
+cd helloWorld
+py -3 -m venv .venv
+.venv\Scripts\activate
+pip install Flask
+
+====== ENDING OF SCRIPT ======
+------------------------------------------------------------------
+=========== BASE DE UNA APP EN FLASK ===========
+------------------------------------------------------------------
+
+====== BEGINNING OF SCRIPT ======
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "<p>Hello, World!</p>"
+
+====== ENDING OF SCRIPT ======
+
+------------------------------------------------------------------
+=========== HTML Escaping ===========
+------------------------------------------------------------------
+
+====== BEGINNING OF SCRIPT ======
+
+from markupsafe import escape
+
+@app.route("/<variable>")
+def escape():
+    return f"Escape function example, {escape(variable)}"
+
+====== ENDING OF SCRIPT ======
+
+------------------------------------------------------------------
+=========== Dynamic Routes ===========
+------------------------------------------------------------------

@@ -1,0 +1,113 @@
+------------------------------------------------------------------
+=========== COMO CREAR UN NUEVO PROYECTO EN FLASK PURO ===========
+------------------------------------------------------------------
+1.- Crea el Entorno para Flask
+--Se crea una carpeta para almacenar el proyecto y una carpeta .venv para el entorno aislado de Python
+
+mkdir helloWorld
+cd helloWorld
+py -3 -m venv .venv
+
+2.- Activa el entorno con:
+
+.venv\Scripts\activate
+
+3.- Instala Flask
+-- Despues de activar el entorno, usa el siguiente comando para activar Flask:
+
+pip install Flask
+
+------------------------------------------------------------------
+
+====== BEGINNING OF SCRIPT ======
+
+mkdir helloWorld
+cd helloWorld
+py -3 -m venv .venv
+.venv\Scripts\activate
+pip install Flask
+
+====== ENDING OF SCRIPT ======
+
+------------------------------------------------------------------
+======= INTRODUCCIÓN A FLASK =======
+------------------------------------------------------------------
+-- La base de una aplicación en Flask se ve algo así:
+
+====== BEGINNING OF SCRIPT ======
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "<p>Hello, World!</p>"
+
+====== ENDING OF SCRIPT ======
+
+#### ATENCIÓN: Puedes guardar la app como hello_world.py, solo asegurate de nunca guardarlo como flask.py porque este puede entrar en conflicto con el propio Flask.
+De igual manera, asegurate de haber activado el ambiente .venv con '.venv\Scripts\activate' antes de intentar iniciar la aplicación. ###
+
+-- Para correr Flask, simplemente necesitas introducir el comando: 'flask' o 'python -m flask'.
+-- También necesitaras decirle a la terminal donde está tu aplicación con la opción --app
+
+La terminal debería verse así:
+
+(.venv) PS \helloWorld> flask --app hello_World run
+ * Serving Flask app 'hello_World'
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+
+TIP: Puedes nombrar el archivo como app.py o wsgi.py para no especificar el archivo
+TIP 2: Puedes correr el archivo con la opción --reload para que se actualice la página cuando 
+realices un cambio en el código o simplemente iniciarlo en modo debug con la opción --debug
+
+------------------------------------------------------------------
+======= BASES DE FLASK =======
+--Ahora veremos algunos conceptos base de Flask.
+------------------------------------------------------------------
+
+--- HTML Escaping ---
+
+-- Agrega lo siguiente debajo de lo antes visto en Flask:
+
+====== BEGGINING OF SCRIPT ======
+
+from markupsafe import escape
+
+@app.route("/escape")
+def escape():
+    return f"Escape function example, {("<script>alert('bad')</script>!")}"
+
+====== ENDING OF SCRIPT ======
+
+-- Ahora dirigete a http://127.0.0.1:5000/escape
+
+-- Ves que se ha mostrado un mensaje de servidor?
+-- Ahora sobreescribe lo anterior con lo siguiente:
+
+====== BEGGINING OF SCRIPT ======
+
+@app.route("/escape")
+def hello():
+    return f"Escape function example, {escape("<script>alert('bad')</script>!")}"
+
+====== ENDING OF SCRIPT ======
+
+-- Notas que ahora se muestra solamente como texto?
+-- Esto se debe a que cuando retornamos un HTML en Flask, cualquier valor renderizado (prioritariamente aquellos dados por el usuario) 
+-- debe de "escaparse" (del inglés escape, el cual es una función en Flask) para protegerse de los ataques de inyección.
+-- La función 'escape()' que acabamos de utilizar, usualmente se omite en los tutoriales, pero siempre es bueno saber como interactúa con los datos.
+
+-- Por ejemplo, si un usuario llegase a introducir en alguna entrada que luego se renderiza en la página, algo como "<script>alert('bad')</script>", correría el script
+-- sin ningún problema, pero al utilizar la función 'escape()' en la variable renderizada, logramos que se renderice como texto unicamente, sin riesgo a que se ejecute el Script.
+------------------------------------------------------------------
+
+--- Dynamic Routing ---
+
+@app.route("/<name>")
+def hello(name):
+    return f"Hello, {name}"
+--

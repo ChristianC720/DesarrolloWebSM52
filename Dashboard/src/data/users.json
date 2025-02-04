@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Test User",
+      "apellido": "Test Lastname",
+      "email": "test@test.com",
+      "password": "hashedPassword123",
+      "role": 1,
+      "twoFactorSecret": "",
+      "verified": false
+    }
+  ]
+} 

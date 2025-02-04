@@ -19,6 +19,7 @@ function App() {
             <Route path='/dashboard2' element={<MainContent2/>}/>
             <Route path='/dashboard3' element={<DeveloperDashboard/>}/>
             <Route path='/dashboard4' element={<DesignerDashboard/>}/>
+            <Route path='/perfil' element={<MainContent/>}/>
           </Routes>
         </div>
       </ProjectProvider>
