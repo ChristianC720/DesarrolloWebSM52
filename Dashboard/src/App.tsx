@@ -1,27 +1,43 @@
-import { Route, Routes } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from './components/login'
-import MainContent from './components/mainContent'
+import AdminDashboard from './components/mainContent'
+import AnalystDashboard from './components/mainContent2'
+import DeveloperDashboard from './components/mainContent3'
+import DesignerDashboard from './components/mainContent4'
 import './styles/dashboard.css'
 import './styles/sidebar.css'
 import './styles/login.css'
 import { ProjectProvider } from './context/ProjectContext'
-import DeveloperDashboard from './components/mainContent3'
-import DesignerDashboard from './components/mainContent4'
-import MainContent2 from './components/mainContent2'
+import ProtectedRoute from './components/ProtectedRoute'
 
-function App() {
+const App: React.FC = () => {
   return (
-      <ProjectProvider>
-        <div className="app">
-          <Routes>
-            <Route path='/' element={<Login/>}/>
-            <Route path='/dashboard' element={<MainContent/>}/>
-            <Route path='/dashboard2' element={<MainContent2/>}/>
-            <Route path='/dashboard3' element={<DeveloperDashboard/>}/>
-            <Route path='/dashboard4' element={<DesignerDashboard/>}/>
-          </Routes>
-        </div>
-      </ProjectProvider>
+    <ProjectProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }/>
+        <Route path="/dashboard2" element={
+          <ProtectedRoute allowedRoles={['analyst']}>
+            <AnalystDashboard />
+          </ProtectedRoute>
+        }/>
+        <Route path="/dashboard3" element={
+          <ProtectedRoute allowedRoles={['developer']}>
+            <DeveloperDashboard />
+          </ProtectedRoute>
+        }/>
+        <Route path="/dashboard4" element={
+          <ProtectedRoute allowedRoles={['designer']}>
+            <DesignerDashboard />
+          </ProtectedRoute>
+        }/>
+      </Routes>
+    </ProjectProvider>
   )
 }
 

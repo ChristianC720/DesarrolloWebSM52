@@ -1,7 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
+    const navigate = useNavigate();
+    
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("registeredUsers");
+    navigate("/login");
+  };
+
     return (
         <div className="search-container">
             <input 
@@ -13,6 +23,12 @@ function Header() {
                 <button>
                     <span>👤</span>
                 </button>
+      <button 
+        onClick={handleLogout}
+      >
+        Cerrar Sesión
+      </button>
+
             </div>
         </div>
     );

@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+
+interface UserInfo {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+interface NewUser extends UserInfo {
+  apellido: string;
+  password: string;
+}
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,11 +25,11 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  //Aca verificamos que no se puedan usar caracteres especiales con este parametro//
   const validateInput = (input: string): boolean => {
-    const regex = /^[a-zA-Z0-9@.]*$/; // Permite solo letras, números, @ y .
+    const regex = /^[a-zA-Z0-9@.]*$/;
     return regex.test(input);
   };
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (validateInput(value)) {
@@ -61,16 +71,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      try {
-        const decodedToken: any = jwtDecode(token);
-        const isAdmin = decodedToken.role === 1;
-        navigate(isAdmin ? "/dashboard" : "/perfil");
-      } catch (error) {
-        console.error("Error decodificando el token:", error);
-        localStorage.removeItem("access_token");
-      }
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      const user: UserInfo = JSON.parse(userInfo);
+      navigate(user.role === 'admin' ? "/dashboard" : "/perfil");
     }
   }, [navigate]);
 
@@ -82,42 +86,95 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', {
-        email: email,
-        password: password,
-      });
+      const response = await fetch('/users.json');
+      const users = await response.json();
+      
+      let user = users.find((u: any) => u.email === email && u.password === password);
 
-      localStorage.setItem("access_token", response.data.access_token);
-
-      const decodedToken: any = jwtDecode(response.data.access_token);
-      const isAdmin = decodedToken.role === 1;
-
-      if (isAdmin) {
-        navigate("/dashboard");
-      } else {
-        navigate("/perfil");
+      if (!user) {
+        const storedUsers = localStorage.getItem('registeredUsers');
+        const registeredUsers: NewUser[] = storedUsers ? JSON.parse(storedUsers) : [];
+        user = registeredUsers.find(u => u.email === email && u.password === password);
+      }
+      
+      if (!user) {
+        setError("Correo o contraseña incorrectos");
+        return;
       }
 
-      window.dispatchEvent(new Event("storage"));
+      const userInfo: UserInfo = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      };
+
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      localStorage.setItem("userRole", user.role);
+
+      switch(user.role) {
+        case 'admin':
+          navigate("/dashboard");
+          break;
+        case 'analyst':
+          navigate("/dashboard2");
+          break;
+        case 'developer':
+          navigate("/dashboard3");
+          break;
+        case 'designer':
+          navigate("/dashboard4");
+          break;
+        default:
+          navigate("/perfil");
+      }
+
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
-      setError("Correo o contraseña incorrectos");
+      setError("Error al iniciar sesión");
     }
   };
 
-  const handleRegister = async () => {
-    const userData = {
-      name: name,
-      apellido: apellido,
-      email: email,
-      password: password,
-    };
 
+  const handleRegister = async () => {
     try {
-      await axios.post('http://localhost:3000/auth', userData);
-      navigate('/login');
+      const response = await fetch('/users.json');
+      const existingUsers = await response.json();
+      
+      if (existingUsers.some((user: any) => user.email === email)) {
+        setError('Este correo electrónico ya está registrado');
+        return;
+      }
+
+      const storedUsers = localStorage.getItem('registeredUsers');
+      const registeredUsers: NewUser[] = storedUsers ? JSON.parse(storedUsers) : [];
+
+      if (registeredUsers.some(user => user.email === email)) {
+        setError('Este correo electrónico ya está registrado');
+        return;
+      }
+
+      const newUser: NewUser = {
+        id: existingUsers.length + registeredUsers.length + 1,
+        name,
+        apellido,
+        email,
+        password,
+        role: "user"
+      };
+
+      registeredUsers.push(newUser);
+      localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+      
+      setIsLogin(true);
+      setEmail('');
+      setPassword('');
+      setName('');
+      setApellido('');
+      setError('Usuario registrado exitosamente. Por favor inicie sesión.');
+
     } catch (error) {
-      console.error('Error al registrar:', error.response ? error.response.data : error.message);
+      console.error('Error al registrar:', error);
     }
   };
 
