@@ -189,4 +189,31 @@
 
 .status-list li:nth-child(n+4):hover {
     background: #ffe6e6;
+}
+
+.role-group {
+    margin-bottom: 1rem;
+}
+
+.role-group .role {
+    display: block;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+}
+
+.member-item {
+    padding: 0.5rem 1rem;
+}
+
+.member-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.member-name .arrow {
+    color: #666;
+    font-size: 0.8rem;
 } 

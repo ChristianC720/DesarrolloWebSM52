@@ -1,4 +1,3 @@
-
 .login-container {
     display: flex;
     align-items: center;
@@ -161,5 +160,37 @@
   }
 }
 
+.mfa-form {
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mfa-question {
+  margin-bottom: 1.5rem;
+}
+
+.mfa-question label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.mfa-question input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.mfa-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.mfa-buttons button {
+  flex: 1;
+}
   
   

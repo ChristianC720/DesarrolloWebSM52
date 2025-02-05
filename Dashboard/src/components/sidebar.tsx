@@ -1,12 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/sidebar.css';
 import { useProjects } from '../context/ProjectContext';
 
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+}
+
 function Sidebar() {
-    const [progress] = useState(57);
     const [showMembers, setShowMembers] = useState(false);
     const [showStatus, setShowStatus] = useState(false);
+    const [users, setUsers] = useState<User[]>([]);
     const { projectCounts } = useProjects();
+
+    useEffect(() => {
+        const loadUsers = async () => {
+            try {
+                // Load users from both users.json and localStorage
+                const response = await fetch('/users.json');
+                const jsonUsers = await response.json();
+                
+                const storedUsers = localStorage.getItem('registeredUsers');
+                const registeredUsers = storedUsers ? JSON.parse(storedUsers) : [];
+                
+                setUsers([...jsonUsers, ...registeredUsers]);
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        };
+
+        loadUsers();
+    }, []);
+
+    // Group users by role
+    const usersByRole = users.reduce((acc: Record<string, User[]>, user) => {
+        if (!acc[user.role]) {
+            acc[user.role] = [];
+        }
+        acc[user.role].push(user);
+        return acc;
+    }, {});
 
     return (
         <aside className="sidebar">
@@ -16,44 +51,30 @@ function Sidebar() {
             </div>
             
             <div className="sidebar-content">
-                <button className="menu-button">
-                    <span className="icon">👥</span>
-                    <span>Equipo</span>
-                    <span className="arrow">▼</span>
-                </button>
-
                 <div className="members-section">
                     <button 
                         className="menu-button"
                         onClick={() => setShowMembers(!showMembers)}
                     >
+                    <span className="icon">👥</span>
                         <span>Miembros</span>
                         <span className="arrow">{showMembers ? '▼' : '▶'}</span>
                     </button>
 
                     {showMembers && (
                         <div className="members-list">
-                            <div className="member-item">
-                                <span className="role">Scrum Master</span>
-                                <div className="member-name">
-                                    <span className="arrow">▶</span>
-                                    <span>Fulanito</span>
+                            {Object.entries(usersByRole).map(([role, users]) => (
+                                <div key={role} className="role-group">
+                                    <span className="role">{role.charAt(0).toUpperCase() + role.slice(1)}</span>
+                                    {users.map(user => (
+                                        <div key={user.id} className="member-item">
+                                            <div className="member-name">
+                                                <span>{user.name}</span>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            </div>
-                            <div className="member-item">
-                                <span className="role">Developer</span>
-                                <div className="member-name">
-                                    <span className="arrow">▶</span>
-                                    <span>Pepito</span>
-                                </div>
-                            </div>
-                            <div className="member-item">
-                                <span className="role">Developer</span>
-                                <div className="member-name">
-                                    <span className="arrow">▶</span>
-                                    <span>Perenganito</span>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     )}
                 </div>
@@ -67,14 +88,13 @@ function Sidebar() {
                         <span className="arrow">{showStatus ? '▼' : '▶'}</span>
                     </button>
 
-                    
-                {showStatus && (
-                    <ul className="status-list">
-                        <li>Proyectos Activos ({projectCounts.active})</li>
-                        <li>Proyectos en Pausa ({projectCounts.paused})</li>
-                        <li>Proyectos Inconclusos ({projectCounts.unfinished})</li>
-                    </ul>
-                )}
+                    {showStatus && (
+                        <ul className="status-list">
+                            <li>Proyectos Activos ({projectCounts.active})</li>
+                            <li>Proyectos en Pausa ({projectCounts.paused})</li>
+                            <li>Proyectos Inconclusos ({projectCounts.unfinished})</li>
+                        </ul>
+                    )}
                 </div>
             </div>
         </aside>

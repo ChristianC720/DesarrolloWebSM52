@@ -1,7 +1,26 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+interface UserInfo {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem('userInfo');
+    if (storedUserInfo) {
+      const user = JSON.parse(storedUserInfo);
+      setUserInfo(user);
+      setShowWarning(user.role === 'user');
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("userInfo");
@@ -11,27 +30,27 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={{ 
-      padding: '1rem', 
-      display: 'flex', 
-      justifyContent: 'flex-end',
-      backgroundColor: '#f8f9fa',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-    }}>
-      <button 
-        onClick={handleLogout}
-        style={{
-          padding: '0.5rem 1rem',
-          backgroundColor: '#dc3545',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer'
-        }}
-      >
-        Cerrar Sesión
-      </button>
-    </nav>
+    <div className="navbar">
+      <div className="navbar-content">
+        {userInfo && (
+          <div className="user-welcome">
+            <span>👋 Bienvenido,</span>
+            <span className="user-name">{userInfo.name}</span>
+          </div>
+        )}
+        <button 
+          onClick={handleLogout}
+          className="logout-button"
+        >
+          Cerrar Sesión
+        </button>
+        {showWarning && (
+          <div className="role-warning">
+            <span>⚠️ Tu rol aún no ha sido asignado. Contacta al administrador.</span>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

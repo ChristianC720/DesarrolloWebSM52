@@ -9,7 +9,7 @@ import './styles/sidebar.css'
 import './styles/login.css'
 import { ProjectProvider } from './context/ProjectContext'
 import ProtectedRoute from './components/ProtectedRoute'
-
+import Unasigned from './components/Navbar'
 const App: React.FC = () => {
   return (
     <ProjectProvider>
@@ -36,9 +36,11 @@ const App: React.FC = () => {
             <DesignerDashboard />
           </ProtectedRoute>
         }/>
+        <Route path="/*" element={<Unasigned />} />
       </Routes>
     </ProjectProvider>
   )
+
 }
 
 export default App

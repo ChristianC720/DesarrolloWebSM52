@@ -798,3 +798,149 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.users-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.user-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.role-section {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.role-select {
+    padding: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.role-text {
+    padding: 0.25rem;
+}
+
+.role-text.editable {
+    cursor: pointer;
+    color: #0066cc;
+}
+
+.role-text.editable:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #dc3545;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: #ffe6e6;
+    border-radius: 4px;
+}
+
+/* Update these navbar styles */
+.navbar-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 280px; /* Match sidebar width */
+    z-index: 1000;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.navbar-content {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+}
+
+.user-welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #C089E3;
+    font-size: 2rem;
+}
+
+.logout-button {
+    padding: 0.8rem 1.5rem;
+    background-color: #C089E3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(192, 137, 227, 0.2);
+    min-width: 200px;
+}
+
+.role-warning {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Update main section padding to account for fixed navbar */
+.main-section {
+    padding-top: 90px; /* Original padding + navbar height */
+}

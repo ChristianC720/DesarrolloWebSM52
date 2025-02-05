@@ -4,30 +4,94 @@
         "name": "Admin",
         "email": "admin@example.com",
         "password": "password123",
-        "role": "admin"
-
+        "role": "admin",
+        "securityQuestions": [
+            {
+                "id": "q1",
+                "question": "¿Cuál es el nombre de tu primera mascota?",
+                "answer": "Test"
+            },
+            {
+                "id": "q2",
+                "question": "¿En qué ciudad naciste?",
+                "answer": "City"
+            }
+        ]
     },
     {
         "id": 2,
         "name": "Jane",
         "email": "analyst@example.com",
         "password": "password123",
-        "role": "analyst"
-
+        "role": "analyst",
+        "securityQuestions": [
+            {
+                "id": "q1",
+                "question": "¿Cuál es el nombre de tu primera mascota?",
+                "answer": "Test"
+            },
+            {
+                "id": "q2",
+                "question": "¿En qué ciudad naciste?",
+                "answer": "City"
+            }
+        ]
     },
     {
         "id": 3,
         "name": "Jim",
         "email": "developer@example.com",
         "password": "password123",
-        "role": "developer"
-
+        "role": "developer",
+        "securityQuestions": [
+            {
+                "id": "q1",
+                "question": "¿Cuál es el nombre de tu primera mascota?",
+                "answer": "Test"
+            },
+            {
+                "id": "q2",
+                "question": "¿En qué ciudad naciste?",
+                "answer": "City"
+            }
+        ]
     },
     {
         "id": 4,
         "name": "Jill",
         "email": "designer@example.com",
         "password": "password123",
-        "role": "designer"
+        "role": "designer",
+        "securityQuestions": [
+            {
+                "id": "q1",
+                "question": "¿Cuál es el nombre de tu primera mascota?",
+                "answer": "Test"
+            },
+            {
+                "id": "q2",
+                "question": "¿En qué ciudad naciste?",
+                "answer": "City"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Christian",
+        "email": "christian@example.com",
+        "password": "12345678",
+        "role": "user",
+        "securityQuestions": [
+            {
+                "id": "q1",
+                "question": "¿Cuál es el nombre de tu primera mascota?",
+                "answer": "Nest"
+            },
+            {
+                "id": "q2",
+                "question": "¿En qué ciudad naciste?",
+                "answer": "Cancun"
+            }
+        ]
     }
 ]
